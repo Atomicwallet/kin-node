@@ -15,8 +15,8 @@
     "dist/"
   ],
   "dependencies": {
-    "@grpc/grpc-js": "^1.1.2",
-    "@kinecosystem/agora-api": "^0.25.0",
+    "@grpc/grpc-js": "^1.2.3",
+    "@kinecosystem/agora-api": "git@github.com:Atomicwallet/agora-api.git",
     "@solana/web3.js": "^0.86.3",
     "@types/bs58": "^4.0.1",
     "@types/express": "^4.17.7",
@@ -28,7 +28,6 @@
     "bytebuffer": "^5.0.1",
     "express": "^4.17.1",
     "google-protobuf": "^4.0.0-rc.2",
-    "grpc": "^1.24.3",
     "hash.js": "^1.1.7",
     "lru-cache": "^6.0.0",
     "protobufjs": "^6.10.1",

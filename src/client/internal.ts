@@ -1,4 +1,4 @@
-import grpc from "grpc";
+import grpc from "@grpc/grpc-js";
 import commonpb from "@kinecosystem/agora-api/node/common/v3/model_pb";
 import accountpb from "@kinecosystem/agora-api/node/account/v3/account_service_pb";
 import accountgrpc from "@kinecosystem/agora-api/node/account/v3/account_service_grpc_pb";

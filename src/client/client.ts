@@ -1,4 +1,4 @@
-import grpc from "grpc";
+import grpc from "@grpc/grpc-js";
 import hash from "hash.js";
 import BigNumber from "bignumber.js";
 import {
