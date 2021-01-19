@@ -47,7 +47,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Internal = exports.SubmitTransactionResult = exports.USER_AGENT = exports.DESIRED_KIN_VERSION_HEADER = exports.KIN_VERSION_HEADER = exports.USER_AGENT_HEADER = exports.SDK_VERSION = void 0;
-var grpc_js_1 = require("@grpc/grpc-js");
+var grpc_js_1 = __importDefault(require("@grpc/grpc-js"));
 var model_pb_1 = __importDefault(require("@kinecosystem/agora-api/node/common/v3/model_pb"));
 var account_service_pb_1 = __importDefault(require("@kinecosystem/agora-api/node/account/v3/account_service_pb"));
 var account_service_grpc_pb_1 = __importDefault(require("@kinecosystem/agora-api/node/account/v3/account_service_grpc_pb"));
@@ -94,7 +94,7 @@ var Internal = /** @class */ (function () {
             if (config.accountClient || config.txClient || config.accountClientV4 || config.airdropClientV4 || config.txClientV4) {
                 throw new Error("cannot specify endpoint and clients");
             }
-            var sslCreds = grpc_js_1.credentials.createSsl();
+            var sslCreds = grpc_js_1.default.credentials.createSsl();
             this.accountClient = new account_service_grpc_pb_1.default.AccountClient(config.endpoint, sslCreds);
             this.txClient = new transaction_service_grpc_pb_1.default.TransactionClient(config.endpoint, sslCreds);
             this.accountClientV4 = new account_service_grpc_pb_2.default.AccountClient(config.endpoint, sslCreds);
@@ -129,7 +129,7 @@ var Internal = /** @class */ (function () {
         else {
             this.kinVersion = 3;
         }
-        this.metadata = new grpc_js_1.Metadata();
+        this.metadata = new grpc_js_1.default.Metadata();
         this.metadata.set(exports.USER_AGENT_HEADER, exports.USER_AGENT);
         this.metadata.set(exports.KIN_VERSION_HEADER, this.kinVersion.toString());
         if (config.desiredKinVersion) {
@@ -672,4 +672,3 @@ var Internal = /** @class */ (function () {
     return Internal;
 }());
 exports.Internal = Internal;
-

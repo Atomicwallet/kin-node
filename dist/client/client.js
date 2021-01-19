@@ -40,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Client = void 0;
-var grpc_js_1 = require("@grpc/grpc-js");
+var grpc_js_1 = __importDefault(require("@grpc/grpc-js"));
 var hash_js_1 = __importDefault(require("hash.js"));
 var bignumber_js_1 = __importDefault(require("bignumber.js"));
 var stellar_base_1 = require("stellar-base");
@@ -186,7 +186,7 @@ var Client = /** @class */ (function () {
                     case 3:
                         return [2 /*return*/, this.internal.createStellarAccount(key)
                                 .catch(function (err) {
-                                if (err.code && err.code === grpc_js_1.status.FAILED_PRECONDITION) {
+                                if (err.code && err.code === grpc_js_1.default.status.FAILED_PRECONDITION) {
                                     _this.kinVersion = 4;
                                     _this.internal.setKinVersion(4);
                                     return retry_1.retryAsync(function () { return __awaiter(_this, void 0, void 0, function () {
@@ -250,7 +250,7 @@ var Client = /** @class */ (function () {
                     return [2 /*return*/, this.internal.getAccountInfo(account)
                             .then(function (info) { return new bignumber_js_1.default(info.getBalance()); })
                             .catch(function (err) {
-                            if (err.code && err.code === grpc_js_1.status.FAILED_PRECONDITION) {
+                            if (err.code && err.code === grpc_js_1.default.status.FAILED_PRECONDITION) {
                                 _this.kinVersion = 4;
                                 _this.internal.setKinVersion(4);
                                 return solanaFn();
@@ -358,7 +358,7 @@ var Client = /** @class */ (function () {
                         });
                         return [4 /*yield*/, this.signAndSubmit(signers, [op], memo, invoiceList)
                                 .catch(function (err) {
-                                if (err.code && err.code === grpc_js_1.status.FAILED_PRECONDITION) {
+                                if (err.code && err.code === grpc_js_1.default.status.FAILED_PRECONDITION) {
                                     _this.kinVersion = 4;
                                     _this.internal.setKinVersion(4);
                                     return _this.submitPaymentWithResolution(payment, commitment, senderResolution, destinationResolution);
