@@ -1,4 +1,23 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -47,7 +66,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Internal = exports.SubmitTransactionResult = exports.USER_AGENT = exports.DESIRED_KIN_VERSION_HEADER = exports.KIN_VERSION_HEADER = exports.USER_AGENT_HEADER = exports.SDK_VERSION = void 0;
-var grpc_js_1 = __importDefault(require("@grpc/grpc-js"));
+var grpc = __importStar(require("@grpc/grpc-js"));
 var model_pb_1 = __importDefault(require("@kinecosystem/agora-api/node/common/v3/model_pb"));
 var account_service_pb_1 = __importDefault(require("@kinecosystem/agora-api/node/account/v3/account_service_pb"));
 var account_service_grpc_pb_1 = __importDefault(require("@kinecosystem/agora-api/node/account/v3/account_service_grpc_pb"));
@@ -94,7 +113,7 @@ var Internal = /** @class */ (function () {
             if (config.accountClient || config.txClient || config.accountClientV4 || config.airdropClientV4 || config.txClientV4) {
                 throw new Error("cannot specify endpoint and clients");
             }
-            var sslCreds = grpc_js_1.default.credentials.createSsl();
+            var sslCreds = grpc.credentials.createSsl();
             this.accountClient = new account_service_grpc_pb_1.default.AccountClient(config.endpoint, sslCreds);
             this.txClient = new transaction_service_grpc_pb_1.default.TransactionClient(config.endpoint, sslCreds);
             this.accountClientV4 = new account_service_grpc_pb_2.default.AccountClient(config.endpoint, sslCreds);
@@ -129,7 +148,7 @@ var Internal = /** @class */ (function () {
         else {
             this.kinVersion = 3;
         }
-        this.metadata = new grpc_js_1.default.Metadata();
+        this.metadata = new grpc.Metadata();
         this.metadata.set(exports.USER_AGENT_HEADER, exports.USER_AGENT);
         this.metadata.set(exports.KIN_VERSION_HEADER, this.kinVersion.toString());
         if (config.desiredKinVersion) {
