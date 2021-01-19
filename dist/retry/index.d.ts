@@ -1,0 +1,13 @@
+export declare function retry<T>(fn: () => T, ...strategies: ShouldRetry[]): Promise<T>;
+export declare function retryAsync<T>(fn: () => Promise<T>, ...strategies: ShouldRetry[]): Promise<T>;
+export declare type ShouldRetry = (attempt: number, err: Error) => Promise<boolean>;
+export declare function limit(maxAttempts: number): ShouldRetry;
+export declare function retriableErrors(...errors: any[]): ShouldRetry;
+export declare function nonRetriableErrors(...errors: any[]): ShouldRetry;
+export declare function backoff(fn: DelayFunction, maxDelaySeconds: number): ShouldRetry;
+export declare function backoffWithJitter(fn: DelayFunction, maxDelaySeconds: number, jitter: number): ShouldRetry;
+export declare type DelayFunction = (attempts: number) => number;
+export declare function constantDelay(seconds: number): DelayFunction;
+export declare function linearDelay(baseDelaySeconds: number): DelayFunction;
+export declare function expontentialDelay(baseDelaySeconds: number, base: number): DelayFunction;
+export declare function binaryExpotentialDelay(baseDelaySeconds: number): DelayFunction;
